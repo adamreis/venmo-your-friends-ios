@@ -111,8 +111,11 @@
 }
 
 - (NSURL *)venmoURLWithPath:(NSString *)path {
-    NSString *newPath = [NSString stringWithFormat:@"venmosdk://venmo.com%@", path];
-    return [[NSURL alloc] initWithString:[newPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString *new_string = [NSString stringWithFormat:@"venmosdk://venmo.com%@", path];
+    new_string = [new_string stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding];
+    
+    NSURL *new_url = [[NSURL alloc] initWithString:new_string];
+    return new_url;
 }
 
 - (NSURL *)webURLWithPath:(NSString *)path {
